@@ -656,6 +656,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -671,6 +672,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62ff2c3d105c084bae95de0a85e51c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragSpeed: 2
+  arenaGrid: {fileID: 1211443505}
+  arenaManager: {fileID: 1211443508}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -788,15 +804,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b48a2752662ad41a811d08ad5e6d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420031}
   grassTile: {fileID: 11400000, guid: a2473d14a091abe41a07cc56edb65f53, type: 2}
-  grassBottomTile: {fileID: 0}
-  grassTopTile: {fileID: 0}
-  grassRightTile: {fileID: 0}
-  grassLeftTile: {fileID: 0}
-  grassBottomLeftTile: {fileID: 0}
-  grassBottomRightTile: {fileID: 0}
-  grassTopLeftTile: {fileID: 0}
-  grassTopRightTile: {fileID: 0}
+  grassBottomTile: {fileID: 11400000, guid: e078480655a29f34d80c11997da81e96, type: 2}
+  grassTopTile: {fileID: 11400000, guid: 185195d5d5e1f2943933a37240c2db84, type: 2}
+  grassRightTile: {fileID: 11400000, guid: b0c647551cd88bd43bac149c79d0750e, type: 2}
+  grassLeftTile: {fileID: 11400000, guid: 9f24ba1ce851e0f41bd52bafdb965703, type: 2}
+  grassBottomLeftTile: {fileID: 11400000, guid: dc694c8916310c649a70ce9665a586d4, type: 2}
+  grassBottomRightTile: {fileID: 11400000, guid: 16c842342853d2b43b314d73776d9ada, type: 2}
+  grassTopLeftTile: {fileID: 11400000, guid: e2287f4ecba0cbe4ea85b08dd7932fac, type: 2}
+  grassTopRightTile: {fileID: 11400000, guid: 17c27663cbd471e44abc0bfe19acc7fc, type: 2}
   seaTile: {fileID: 11400000, guid: fba39704ea07e1444a31bc2e276fee2c, type: 2}
   tileMapSize: 30
   collisionObjects: {fileID: 1346179645}

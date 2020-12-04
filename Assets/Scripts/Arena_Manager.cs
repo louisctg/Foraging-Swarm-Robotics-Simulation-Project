@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-
 public class Arena_Manager : MonoBehaviour
 {
     [SerializeField]
+    Camera mainCamera;
+
+    private Tilemap groundTiles;
+    private Tilemap groundBorderTiles;
+    private Tilemap seaTiles;
+
+    // For groundTiles
+    [SerializeField]
     private TileBase grassTile;
 
+    // For groundBorderTiles
     [SerializeField]
     private TileBase grassBottomTile;
     [SerializeField]
@@ -26,10 +34,7 @@ public class Arena_Manager : MonoBehaviour
     [SerializeField]
     private TileBase grassTopRightTile;
 
-    private Tilemap groundTiles;
-    private Tilemap groundBorderTiles;
-    private Tilemap seaTiles;
-
+    // For seaTiles
     [SerializeField]
     private TileBase seaTile;
 
@@ -40,7 +45,6 @@ public class Arena_Manager : MonoBehaviour
 
     [SerializeField]
     private GameObject collisionObjects;
-
     [SerializeField]
     private GameObject borderPrefab;
 
@@ -53,9 +57,12 @@ public class Arena_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera.transform.position = new Vector3(tileMapSize / 2.0f, tileMapSize / 2.0f, -10);
+
         groundTiles = transform.Find("Ground_Tiles").GetComponent<Tilemap>();
         groundBorderTiles = transform.Find("Ground_Border_Tiles").GetComponent<Tilemap>();
         seaTiles = transform.Find("Sea_Tiles").GetComponent<Tilemap>();
+
         DrawTilemaps();
     }
 
@@ -65,39 +72,62 @@ public class Arena_Manager : MonoBehaviour
 
         // Clear all tileMaps
         groundTiles.ClearAllTiles();
+        groundBorderTiles.ClearAllTiles();
         seaTiles.ClearAllTiles();
 
         // Draw the ground
-        for (int i = 0; i < currentTileMapSize; i++)
+        for (int x = 0; x < currentTileMapSize; x++)
         {
-            for (int j = 0; j < currentTileMapSize; j++)
+            // Draw centre arena
+            for (int y = 0; y < currentTileMapSize; y++)
             {
-                groundTiles.SetTile(new Vector3Int(i, j, 0), grassTile);
+                groundTiles.SetTile(new Vector3Int(x, y, 0), grassTile);
             }
         }
 
-        // Draw the sea (i.e. to differenciate between the ground and out of bounds area)
-        for (int i = -5; i < currentTileMapSize + 5; i++)
+        // Draw the top and bottom border
+        for (int x = 0; x < currentTileMapSize; x++)
         {
-            for (int j = -5; j < currentTileMapSize + 5; j++)
+            groundBorderTiles.SetTile(new Vector3Int(x, currentTileMapSize, 0), grassTopTile);
+            groundBorderTiles.SetTile(new Vector3Int(x, -1, 0), grassBottomTile);
+        }
+
+        // Draw left and right border
+        for (int y = 0; y < currentTileMapSize; y++)
+        {
+            groundBorderTiles.SetTile(new Vector3Int(-1, y, 0), grassLeftTile);
+            groundBorderTiles.SetTile(new Vector3Int(currentTileMapSize, y, 0), grassRightTile);
+        }
+
+        // Draw the corners of the border
+        groundBorderTiles.SetTile(new Vector3Int(-1, -1, 0), grassBottomLeftTile);
+        groundBorderTiles.SetTile(new Vector3Int(currentTileMapSize, -1, 0), grassBottomRightTile);
+        groundBorderTiles.SetTile(new Vector3Int(-1, currentTileMapSize, 0), grassTopLeftTile);
+        groundBorderTiles.SetTile(new Vector3Int(currentTileMapSize, currentTileMapSize, 0), grassTopRightTile);
+
+        // Draw the sea (i.e. to differenciate between the ground and out of bounds area)
+        for (int x = -8; x < currentTileMapSize + 8; x++)
+        {
+            for (int y = -4; y < currentTileMapSize + 4; y++)
             {
-                seaTiles.SetTile(new Vector3Int(i, j, 0), seaTile);
+                seaTiles.SetTile(new Vector3Int(x, y, 0), seaTile);
             }
         }
 
         collisionObjects.transform.position = new Vector2(currentTileMapSize / 2.0f, currentTileMapSize / 2.0f);
 
         // Instansiate border
-        borderPrefab.transform.localScale = new Vector3(1, currentTileMapSize);
+        borderPrefab.transform.localScale = new Vector3(1, currentTileMapSize + 2);
 
+        // Destroy existing prefabs (if any)
         Destroy(topBorder);
         Destroy(bottomBorder);
         Destroy(leftBorder);
         Destroy(rightBorder);
 
+        // Initiate new prefabs
         topBorder = Instantiate(borderPrefab, new Vector2(currentTileMapSize / 2.0f, currentTileMapSize + 0.5f), Quaternion.Euler(0, 0, 90), collisionObjects.transform);
         bottomBorder = Instantiate(borderPrefab, new Vector2(currentTileMapSize / 2.0f, -0.5f), Quaternion.Euler(0, 0, 90), collisionObjects.transform);
-
         leftBorder = Instantiate(borderPrefab, new Vector2(-0.5f, currentTileMapSize / 2.0f), Quaternion.identity, collisionObjects.transform);
         rightBorder = Instantiate(borderPrefab, new Vector2(currentTileMapSize + 0.5f, currentTileMapSize / 2.0f), Quaternion.identity, collisionObjects.transform);
     }
@@ -109,5 +139,10 @@ public class Arena_Manager : MonoBehaviour
         {
             DrawTilemaps();
         }
+    }
+
+    public float GetArenaSize()
+    {
+        return tileMapSize;
     }
 }
