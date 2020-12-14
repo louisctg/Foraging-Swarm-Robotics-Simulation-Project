@@ -105,14 +105,21 @@ public class Arena_Manager : MonoBehaviour
         groundBorderTiles.SetTile(new Vector3Int(-1, currentTileMapSize, 0), grassTopLeftTile);
         groundBorderTiles.SetTile(new Vector3Int(currentTileMapSize, currentTileMapSize, 0), grassTopRightTile);
 
+        float height = currentTileMapSize * 1.5f;
+        float width = (height / 9.0f) * 16.0f;
+        int yAddOn = Mathf.RoundToInt((height - currentTileMapSize) / 2);
+        int xAddOn = Mathf.RoundToInt((width - currentTileMapSize) / 2);
+
+
         // Draw the sea (i.e. to differenciate between the ground and out of bounds area)
-        for (int x = -8; x < currentTileMapSize + 8; x++)
+        for (int x = -xAddOn; x < currentTileMapSize + xAddOn; x++)
         {
-            for (int y = -4; y < currentTileMapSize + 4; y++)
+            for (int y = -yAddOn; y < currentTileMapSize + yAddOn; y++)
             {
                 seaTiles.SetTile(new Vector3Int(x, y, 0), seaTile);
             }
         }
+        
 
         collisionObjects.transform.position = new Vector2(currentTileMapSize / 2.0f, currentTileMapSize / 2.0f);
 
