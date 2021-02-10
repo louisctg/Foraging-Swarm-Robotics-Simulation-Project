@@ -6,11 +6,13 @@ public class BristolRestingState : BristolAbstractState
 
     public override void TimeoutChangeState()
     {
-        throw new System.NotImplementedException();
+        this.robot.TransitionToState(robot.searchingState);
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        this.timeInState += Time.deltaTime;
+        if (timeInState >= timeout)
+            TimeoutChangeState();
     }
 }

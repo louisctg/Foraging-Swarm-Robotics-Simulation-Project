@@ -7,7 +7,7 @@ public class BristolAvoidanceGrabbingState : BristolAbstractAvoidanceState
 
     public override void TimeoutChangeState()
     {
-        this.robot.TransitionToState(robot.homingState);
+        this.robot.TransitionToState(robot.grabbingState);
     }
 
     public override void Update()

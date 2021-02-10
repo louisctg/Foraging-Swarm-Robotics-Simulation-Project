@@ -6,11 +6,13 @@ public class BristolAvoidanceDepositState : BristolAbstractAvoidanceState
 
     public override void TimeoutChangeState()
     {
-        throw new System.NotImplementedException();
+        this.robot.TransitionToState(robot.depositState);
     }
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        this.timeInState += Time.deltaTime;
+        if (timeInState >= timeout)
+            TimeoutChangeState();
     }
 }
