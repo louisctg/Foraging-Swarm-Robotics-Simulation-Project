@@ -39,7 +39,7 @@ public class BristolRobotBehaviour : MonoBehaviour
         currentState = searchingState;
 
         // Rotate to random direction
-        transform.Rotate(0, 0, Random.Range(-180, 180));
+        transform.Rotate(0, 0, Random.Range(0, 360));
     }
 
     void Update()
