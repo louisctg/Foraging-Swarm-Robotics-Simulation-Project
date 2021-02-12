@@ -66,6 +66,15 @@ public class Arena_Manager : MonoBehaviour
         DrawTilemaps();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (currentTileMapSize != tileMapSize)
+        {
+            DrawTilemaps();
+        }
+    }
+
     private void DrawTilemaps()
     {
         currentTileMapSize = tileMapSize;
@@ -137,15 +146,6 @@ public class Arena_Manager : MonoBehaviour
         bottomBorder = Instantiate(borderPrefab, new Vector2(currentTileMapSize / 2.0f, -0.5f), Quaternion.Euler(0, 0, 90), collisionObjects.transform);
         leftBorder = Instantiate(borderPrefab, new Vector2(-0.5f, currentTileMapSize / 2.0f), Quaternion.identity, collisionObjects.transform);
         rightBorder = Instantiate(borderPrefab, new Vector2(currentTileMapSize + 0.5f, currentTileMapSize / 2.0f), Quaternion.identity, collisionObjects.transform);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (currentTileMapSize != tileMapSize)
-        {
-            DrawTilemaps();
-        }
     }
 
     public float GetArenaSize()
