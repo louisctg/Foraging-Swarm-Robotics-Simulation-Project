@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BristolRobotBehaviour : MonoBehaviour
 {
+
     // Foraging States
     public BristolGrabbingState grabbingState;
     public BristolDepositState depositState;
@@ -14,12 +16,15 @@ public class BristolRobotBehaviour : MonoBehaviour
     public BristolSearchingState searchingState; // Initial State
 
     // Avoidance States
-    BristolAvoidanceGrabbingState avoidanceGrabbingState;
-    BristolAvoidanceDepositState avoidanceDepositState;
-    BristolAvoidanceHoningState avoidanceHoningState;
-    BristolAvoidanceSearchingState avoidanceSearchingState;
+    public BristolAvoidanceGrabbingState avoidanceGrabbingState;
+    public BristolAvoidanceDepositState avoidanceDepositState;
+    public BristolAvoidanceHoningState avoidanceHoningState;
+    public BristolAvoidanceSearchingState avoidanceSearchingState;
 
     BristolAbstractState currentState;
+    [SerializeField]
+    private GameObject stateText;
+    private StateTextManager stateTextManager;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +41,14 @@ public class BristolRobotBehaviour : MonoBehaviour
         avoidanceSearchingState = new BristolAvoidanceSearchingState(20, this);
 
         // Robots always starts in a searching state
-        currentState = searchingState;
+        currentState = avoidanceHoningState;
+
+        // Get object to state text manager script and set text;
+        stateTextManager = stateText.GetComponent<StateTextManager>();
+        stateTextManager.SetStateString(currentState);
 
         // Rotate to random direction
-        transform.Rotate(0, 0, Random.Range(0, 360));
+        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
     }
 
     void Update()
@@ -47,9 +56,14 @@ public class BristolRobotBehaviour : MonoBehaviour
         //currentState.Update();
     }
 
+    private void LateUpdate()
+    {
+    }
+
     public void TransitionToState(BristolAbstractState newState)
     {
         currentState = newState;
+        stateTextManager.SetStateString(currentState);
         currentState.resetTime();
     }
 }

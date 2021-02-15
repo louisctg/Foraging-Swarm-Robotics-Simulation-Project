@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class BristolHomingState : BristolAbstractState
 {
-    public BristolHomingState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot) { }
+    public BristolHomingState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot)
+    {
+        stateString = "H";
+    }
 
     public override void TimeoutChangeState()
     {

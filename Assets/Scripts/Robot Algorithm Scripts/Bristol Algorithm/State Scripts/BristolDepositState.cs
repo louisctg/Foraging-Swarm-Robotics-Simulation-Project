@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class BristolDepositState : BristolAbstractState
 {
-    public BristolDepositState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot) { }
+    public BristolDepositState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot)
+    {
+        stateString = "D";
+    }
 
     public override void TimeoutChangeState()
     {

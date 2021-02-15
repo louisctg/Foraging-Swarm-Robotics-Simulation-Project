@@ -4,7 +4,11 @@ using Random = UnityEngine.Random;
 
 public class BristolSearchingState : BristolAbstractState
 {
-    public BristolSearchingState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot) { }
+
+    public BristolSearchingState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot)
+    {
+        stateString = "S";
+    }
 
     override public void TimeoutChangeState()
     {

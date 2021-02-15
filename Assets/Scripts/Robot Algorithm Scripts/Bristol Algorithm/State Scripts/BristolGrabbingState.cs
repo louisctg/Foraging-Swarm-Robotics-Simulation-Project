@@ -3,7 +3,10 @@ using UnityEngine;
 public class BristolGrabbingState : BristolAbstractState
 {
 
-    public BristolGrabbingState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot) { }
+    public BristolGrabbingState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot)
+    {
+        stateString = "G";
+    }
 
     public override void TimeoutChangeState()
     {

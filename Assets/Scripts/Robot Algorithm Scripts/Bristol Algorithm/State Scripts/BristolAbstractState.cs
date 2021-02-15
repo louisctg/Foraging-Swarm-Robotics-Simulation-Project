@@ -5,6 +5,8 @@ public abstract class BristolAbstractState
     protected float timeout;
     protected float timeInState;
 
+    public string stateString;
+
     public BristolRobotBehaviour robot;
 
     protected BristolAbstractState(float timeout, BristolRobotBehaviour robot)
@@ -21,4 +23,9 @@ public abstract class BristolAbstractState
     public abstract void TimeoutChangeState();
 
     public abstract void Update();
+
+    public string GetStateString()
+    {
+        return this.stateString;
+    }
 }
