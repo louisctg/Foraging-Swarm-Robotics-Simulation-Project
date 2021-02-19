@@ -915,6 +915,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bristol Robot
       objectReference: {fileID: 0}
+    - target: {fileID: 5638978035657480177, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_fontSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638978035657480177, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 5638978035657480177, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 9095646085594562091, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: stateText
       value: 
