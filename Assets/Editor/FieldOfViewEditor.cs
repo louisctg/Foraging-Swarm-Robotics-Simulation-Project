@@ -17,12 +17,19 @@ public class FieldOfViewEditor : Editor
 		Handles.DrawWireArc(FOV.transform.position, FOV.transform.forward, leftViewDirection, 360.0f - FOV.viewAngle, FOV.viewRadius);
 
 		Handles.color = Color.red;
+
 		// Draw the arc view of the robot
 		Handles.DrawLine(FOV.transform.position, FOV.transform.position + leftViewDirection * FOV.viewRadius);
 
 		Handles.DrawWireArc(FOV.transform.position, FOV.transform.forward, rightViewDirection, FOV.viewAngle, FOV.viewRadius);
 
 		Handles.DrawLine(FOV.transform.position, FOV.transform.position + rightViewDirection * FOV.viewRadius);
+
+		Handles.color = Color.blue;
+		foreach (Transform visibleObjects in FOV.visibleObjects)
+		{
+			Handles.DrawLine(FOV.transform.position, visibleObjects.position);
+		}
 	}
 
 }

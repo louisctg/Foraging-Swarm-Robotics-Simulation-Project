@@ -744,23 +744,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &579296746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 579296746, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-  m_PrefabInstance: {fileID: 966832675}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &579296747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579296746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec0891bd1c0c2e4bbaceabe7c31f79a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &929731737
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +756,7 @@ GameObject:
   - component: {fileID: 929731740}
   - component: {fileID: 929731739}
   - component: {fileID: 929731738}
+  - component: {fileID: 929731742}
   m_Layer: 5
   m_Name: Main UI Canvas
   m_TagString: Untagged
@@ -860,6 +844,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &929731742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929731737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 044656299aac5e949ad74cbe72c82982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &966832675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -873,11 +869,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.65
+      value: -1.54
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.15
+      value: -2.85
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -885,7 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9955208
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalRotation.x
@@ -897,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.09454274
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -909,28 +905,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -10.85
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631671, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_Name
       value: Bristol Robot
       objectReference: {fileID: 0}
-    - target: {fileID: 5638978035657480177, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_fontSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5638978035657480177, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5638978035657480177, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9095646085594562091, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: stateText
-      value: 
-      objectReference: {fileID: 579296746}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
 --- !u!1 &1211443505
@@ -1007,6 +987,71 @@ MonoBehaviour:
   tileMapSize: 30
   collisionObjects: {fileID: 1346179645}
   borderPrefab: {fileID: 1266706696769187827, guid: 76a738ce849529445913a843e0ff1804, type: 3}
+--- !u!1001 &1311058793
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 717614905, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: viewAngle
+      value: 33.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 717614905, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: viewRadius
+      value: 3.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9955208
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.09454274
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -10.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 493671143511631671, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_Name
+      value: Bristol Robot (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
 --- !u!1 &1346179645
 GameObject:
   m_ObjectHideFlags: 0
