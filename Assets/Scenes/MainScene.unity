@@ -863,17 +863,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 658165068, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.54
+      value: 6.77
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.85
+      value: 2.57
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -881,7 +885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9955208
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalRotation.x
@@ -893,7 +897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.09454274
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -905,12 +909,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -10.85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631671, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_Name
       value: Bristol Robot
       objectReference: {fileID: 0}
+    - target: {fileID: 2473264703432472609, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e3a5a36e22b50b4cb2c80508b632b16, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
 --- !u!1 &1211443505
@@ -987,71 +995,6 @@ MonoBehaviour:
   tileMapSize: 30
   collisionObjects: {fileID: 1346179645}
   borderPrefab: {fileID: 1266706696769187827, guid: 76a738ce849529445913a843e0ff1804, type: 3}
---- !u!1001 &1311058793
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 717614905, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: viewAngle
-      value: 33.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 717614905, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: viewRadius
-      value: 3.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9955208
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.09454274
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -10.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 493671143511631671, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_Name
-      value: Bristol Robot (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
 --- !u!1 &1346179645
 GameObject:
   m_ObjectHideFlags: 0

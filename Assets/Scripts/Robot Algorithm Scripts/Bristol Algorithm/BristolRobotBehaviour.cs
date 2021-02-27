@@ -41,7 +41,7 @@ public class BristolRobotBehaviour : MonoBehaviour
         avoidanceSearchingState = new BristolAvoidanceSearchingState(20, this);
 
         // Robots always starts in a searching state
-        currentState = avoidanceHoningState;
+        currentState = searchingState;
 
         // Get object to state text manager script and set text;
         stateTextManager = stateText.GetComponent<StateTextManager>();
