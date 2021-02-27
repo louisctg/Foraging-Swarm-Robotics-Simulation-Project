@@ -8,40 +8,15 @@ public class Arena_Manager : MonoBehaviour
     [SerializeField]
     Camera mainCamera;
 
-    private Tilemap groundTiles;
-    private Tilemap groundBorderTiles;
-    private Tilemap seaTiles;
-
-    // For groundTiles
-    [SerializeField]
-    private TileBase grassTile;
-
-    // For groundBorderTiles
-    [SerializeField]
-    private TileBase grassBottomTile;
-    [SerializeField]
-    private TileBase grassTopTile;
-    [SerializeField]
-    private TileBase grassRightTile;
-    [SerializeField]
-    private TileBase grassLeftTile;
-    [SerializeField]
-    private TileBase grassBottomLeftTile;
-    [SerializeField]
-    private TileBase grassBottomRightTile;
-    [SerializeField]
-    private TileBase grassTopLeftTile;
-    [SerializeField]
-    private TileBase grassTopRightTile;
-
-    // For seaTiles
-    [SerializeField]
-    private TileBase seaTile;
+    Mesh groundMesh;
+    Mesh groundBorderMesh;
+    Mesh groundCornerMesh;
+    Mesh seaMesh;
 
     [SerializeField]
     [Range(2,200)]
-    private int tileMapSize = 20;
-    private int currentTileMapSize;
+    private int gridMapSize = 200;
+    private int currentGridSize;
 
     [SerializeField]
     private GameObject collisionObjects;
@@ -57,83 +32,40 @@ public class Arena_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera.transform.position = new Vector3(tileMapSize / 2.0f, tileMapSize / 2.0f, -10);
+        mainCamera.transform.position = new Vector3(gridMapSize / 2.0f, gridMapSize / 2.0f, -10);
 
-        groundTiles = transform.Find("Ground_Tiles").GetComponent<Tilemap>();
-        groundBorderTiles = transform.Find("Ground_Border_Tiles").GetComponent<Tilemap>();
-        seaTiles = transform.Find("Sea_Tiles").GetComponent<Tilemap>();
+        groundBorderMesh = new Mesh();
+        groundCornerMesh = new Mesh();
 
-        DrawTilemaps();
+        transform.Find("Ground Border Tiles").GetComponent<MeshFilter>().mesh = groundBorderMesh;
+        transform.Find("Ground Corner Tiles").GetComponent<MeshFilter>().mesh = groundCornerMesh;
+
+        DrawGrids();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentTileMapSize != tileMapSize)
+        if (currentGridSize != gridMapSize)
         {
-            DrawTilemaps();
+            DrawGrids();
         }
     }
 
-    private void DrawTilemaps()
+    private void DrawGrids()
     {
-        currentTileMapSize = tileMapSize;
+        currentGridSize = gridMapSize;
 
-        // Clear all tileMaps
-        groundTiles.ClearAllTiles();
-        groundBorderTiles.ClearAllTiles();
-        seaTiles.ClearAllTiles();
+        DrawGround();
 
-        // Draw the ground
-        for (int x = 0; x < currentTileMapSize; x++)
-        {
-            // Draw centre arena
-            for (int y = 0; y < currentTileMapSize; y++)
-            {
-                groundTiles.SetTile(new Vector3Int(x, y, 0), grassTile);
-            }
-        }
+        DrawBorders();
 
-        // Draw the top and bottom border
-        for (int x = 0; x < currentTileMapSize; x++)
-        {
-            groundBorderTiles.SetTile(new Vector3Int(x, currentTileMapSize, 0), grassTopTile);
-            groundBorderTiles.SetTile(new Vector3Int(x, -1, 0), grassBottomTile);
-        }
+        DrawCorners();
 
-        // Draw left and right border
-        for (int y = 0; y < currentTileMapSize; y++)
-        {
-            groundBorderTiles.SetTile(new Vector3Int(-1, y, 0), grassLeftTile);
-            groundBorderTiles.SetTile(new Vector3Int(currentTileMapSize, y, 0), grassRightTile);
-        }
-
-        // Draw the corners of the border
-        groundBorderTiles.SetTile(new Vector3Int(-1, -1, 0), grassBottomLeftTile);
-        groundBorderTiles.SetTile(new Vector3Int(currentTileMapSize, -1, 0), grassBottomRightTile);
-        groundBorderTiles.SetTile(new Vector3Int(-1, currentTileMapSize, 0), grassTopLeftTile);
-        groundBorderTiles.SetTile(new Vector3Int(currentTileMapSize, currentTileMapSize, 0), grassTopRightTile);
-
-        float height = currentTileMapSize * 1.5f;
-        float width = (height / 9.0f) * 16.0f;
-        int yAddOn = Mathf.RoundToInt((height - currentTileMapSize) / 2);
-        int xAddOn = Mathf.RoundToInt((width - currentTileMapSize) / 2);
-
-
-        // Draw the sea (i.e. to differenciate between the ground and out of bounds area)
-        for (int x = -xAddOn; x < currentTileMapSize + xAddOn; x++)
-        {
-            for (int y = -yAddOn; y < currentTileMapSize + yAddOn; y++)
-            {
-                seaTiles.SetTile(new Vector3Int(x, y, 0), seaTile);
-            }
-        }
-        
-
-        collisionObjects.transform.position = new Vector2(currentTileMapSize / 2.0f, currentTileMapSize / 2.0f);
+        DrawSea();
 
         // Instansiate border
-        borderPrefab.transform.localScale = new Vector3(1, currentTileMapSize + 2);
+        borderPrefab.transform.localScale = new Vector3(1, currentGridSize + 2);
 
         // Destroy existing prefabs (if any)
         Destroy(topBorder);
@@ -142,14 +74,291 @@ public class Arena_Manager : MonoBehaviour
         Destroy(rightBorder);
 
         // Initiate new prefabs
-        topBorder = Instantiate(borderPrefab, new Vector2(currentTileMapSize / 2.0f, currentTileMapSize + 0.5f), Quaternion.Euler(0, 0, 90), collisionObjects.transform);
-        bottomBorder = Instantiate(borderPrefab, new Vector2(currentTileMapSize / 2.0f, -0.5f), Quaternion.Euler(0, 0, 90), collisionObjects.transform);
-        leftBorder = Instantiate(borderPrefab, new Vector2(-0.5f, currentTileMapSize / 2.0f), Quaternion.identity, collisionObjects.transform);
-        rightBorder = Instantiate(borderPrefab, new Vector2(currentTileMapSize + 0.5f, currentTileMapSize / 2.0f), Quaternion.identity, collisionObjects.transform);
+        topBorder = Instantiate(borderPrefab, new Vector2(currentGridSize / 2.0f, currentGridSize + 0.5f), Quaternion.Euler(0, 0, 90), collisionObjects.transform);
+        bottomBorder = Instantiate(borderPrefab, new Vector2(currentGridSize / 2.0f, -0.5f), Quaternion.Euler(0, 0, 90), collisionObjects.transform);
+        leftBorder = Instantiate(borderPrefab, new Vector2(-0.5f, currentGridSize / 2.0f), Quaternion.identity, collisionObjects.transform);
+        rightBorder = Instantiate(borderPrefab, new Vector2(currentGridSize + 0.5f, currentGridSize / 2.0f), Quaternion.identity, collisionObjects.transform);
+    }
+
+    private void DrawGround()
+    {
+        groundMesh = new Mesh();
+
+        int noOfSquares = currentGridSize * currentGridSize;
+        Vector3[] vertices = new Vector3[noOfSquares * 4];
+        Vector2[] uv = new Vector2[noOfSquares * 4];
+        int[] triangles = new int[noOfSquares * 6];
+
+        int vertexIndex = 0;
+        int triangleIndex = 0;
+
+        for (int x = 0; x < currentGridSize; x++)
+        {
+            for (int y = 0; y < currentGridSize; y++)
+            {
+                vertices[vertexIndex] = new Vector3(x, y, 0);
+                vertices[vertexIndex + 1] = new Vector3(x, y + 1, 0);
+                vertices[vertexIndex + 2] = new Vector3(x + 1, y + 1, 0);
+                vertices[vertexIndex + 3] = new Vector3(x + 1, y, 0);
+
+                uv[vertexIndex] = new Vector2(0, 0);
+                uv[vertexIndex + 1] = new Vector2(0, 1);
+                uv[vertexIndex + 2] = new Vector2(1, 1);
+                uv[vertexIndex + 3] = new Vector2(1, 0);
+
+                triangles[triangleIndex++] = vertexIndex;
+                triangles[triangleIndex++] = vertexIndex + 1;
+                triangles[triangleIndex++] = vertexIndex + 2;
+                triangles[triangleIndex++] = vertexIndex;
+                triangles[triangleIndex++] = vertexIndex + 2;
+                triangles[triangleIndex++] = vertexIndex + 3;
+
+                vertexIndex += 4;
+            }
+        }
+
+        groundMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        groundMesh.vertices = vertices;
+        groundMesh.triangles = triangles;
+        groundMesh.uv = uv;
+        groundMesh.RecalculateNormals();
+
+        transform.Find("Ground Tiles").GetComponent<MeshFilter>().mesh = groundMesh;
+    }
+    private void DrawBorders()
+    {
+        groundBorderMesh = new Mesh();
+
+        int noOfSquares = currentGridSize * 4;
+        Vector3[] vertices = new Vector3[noOfSquares * 4];
+        Vector2[] uv = new Vector2[noOfSquares * 4];
+        int[] triangles = new int[noOfSquares * 6];
+
+        int vertexIndex = 0;
+        int triangleIndex = 0;
+
+        for (int x = 0; x < currentGridSize; x++)
+        {
+            vertices[vertexIndex] = new Vector3(x, -1, 0);
+            vertices[vertexIndex + 1] = new Vector3(x, 0, 0);
+            vertices[vertexIndex + 2] = new Vector3(x + 1, 0, 0);
+            vertices[vertexIndex + 3] = new Vector3(x + 1, -1, 0);
+
+            uv[vertexIndex] = new Vector2(1, 1);
+            uv[vertexIndex + 1] = new Vector2(1, 0);
+            uv[vertexIndex + 2] = new Vector2(0, 0);
+            uv[vertexIndex + 3] = new Vector2(0, 1);
+
+            triangles[triangleIndex++] = vertexIndex;
+            triangles[triangleIndex++] = vertexIndex + 1;
+            triangles[triangleIndex++] = vertexIndex + 2;
+            triangles[triangleIndex++] = vertexIndex;
+            triangles[triangleIndex++] = vertexIndex + 2;
+            triangles[triangleIndex++] = vertexIndex + 3;
+
+            vertexIndex += 4;
+        }
+        
+        for (int x = 0; x < currentGridSize; x++)
+        {
+            vertices[vertexIndex] = new Vector3(x, currentGridSize, 0);
+            vertices[vertexIndex + 1] = new Vector3(x, currentGridSize + 1, 0);
+            vertices[vertexIndex + 2] = new Vector3(x + 1, currentGridSize + 1, 0);
+            vertices[vertexIndex + 3] = new Vector3(x + 1, currentGridSize, 0);
+
+            uv[vertexIndex] = new Vector2(0, 0);
+            uv[vertexIndex + 1] = new Vector2(0, 1);
+            uv[vertexIndex + 2] = new Vector2(1, 1);
+            uv[vertexIndex + 3] = new Vector2(1, 0);
+
+            triangles[triangleIndex++] = vertexIndex;
+            triangles[triangleIndex++] = vertexIndex + 1;
+            triangles[triangleIndex++] = vertexIndex + 2;
+            triangles[triangleIndex++] = vertexIndex;
+            triangles[triangleIndex++] = vertexIndex + 2;
+            triangles[triangleIndex++] = vertexIndex + 3;
+
+            vertexIndex += 4;
+        }        
+        
+        for (int y = 0; y < currentGridSize; y++)
+        {
+            vertices[vertexIndex] = new Vector3(-1, y, 0);
+            vertices[vertexIndex + 1] = new Vector3(-1, y+1, 0);
+            vertices[vertexIndex + 2] = new Vector3(0, y+1, 0);
+            vertices[vertexIndex + 3] = new Vector3(0, y, 0);
+
+            uv[vertexIndex] = new Vector2(0, 1);
+            uv[vertexIndex + 1] = new Vector2(1, 1);
+            uv[vertexIndex + 2] = new Vector2(1, 0);
+            uv[vertexIndex + 3] = new Vector2(0, 0);
+
+            triangles[triangleIndex++] = vertexIndex;
+            triangles[triangleIndex++] = vertexIndex + 1;
+            triangles[triangleIndex++] = vertexIndex + 2;
+            triangles[triangleIndex++] = vertexIndex;
+            triangles[triangleIndex++] = vertexIndex + 2;
+            triangles[triangleIndex++] = vertexIndex + 3;
+
+            vertexIndex += 4;
+        }        
+        
+        for (int y = 0; y < currentGridSize; y++)
+        {
+            vertices[vertexIndex] = new Vector3(currentGridSize, y, 0);
+            vertices[vertexIndex + 1] = new Vector3(currentGridSize, y+1, 0);
+            vertices[vertexIndex + 2] = new Vector3(currentGridSize + 1, y+1, 0);
+            vertices[vertexIndex + 3] = new Vector3(currentGridSize + 1, y, 0);
+
+            uv[vertexIndex] = new Vector2(1, 0);
+            uv[vertexIndex + 1] = new Vector2(0, 0);
+            uv[vertexIndex + 2] = new Vector2(0, 1);
+            uv[vertexIndex + 3] = new Vector2(1, 1);
+
+            triangles[triangleIndex++] = vertexIndex;
+            triangles[triangleIndex++] = vertexIndex + 1;
+            triangles[triangleIndex++] = vertexIndex + 2;
+            triangles[triangleIndex++] = vertexIndex;
+            triangles[triangleIndex++] = vertexIndex + 2;
+            triangles[triangleIndex++] = vertexIndex + 3;
+
+            vertexIndex += 4;
+        }
+        
+
+        groundBorderMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        groundBorderMesh.vertices = vertices;
+        groundBorderMesh.triangles = triangles;
+        groundBorderMesh.uv = uv;
+        groundBorderMesh.RecalculateNormals();
+
+        transform.Find("Ground Border Tiles").GetComponent<MeshFilter>().mesh = groundBorderMesh;
+    }
+    private void DrawCorners()
+    {
+        groundCornerMesh = new Mesh();
+
+        int[] triangles = new int[24];
+
+        Vector3[] vertices = new Vector3[16]
+        {
+            new Vector3(-1, -1),
+            new Vector3(-1, 0),
+            new Vector3(0, 0),
+            new Vector3(0, -1),
+
+            new Vector3(-1, currentGridSize),
+            new Vector3(-1, currentGridSize + 1),
+            new Vector3(0, currentGridSize + 1),
+            new Vector3(0, currentGridSize),
+
+            new Vector3(currentGridSize, currentGridSize),
+            new Vector3(currentGridSize, currentGridSize + 1),
+            new Vector3(currentGridSize + 1, currentGridSize + 1),
+            new Vector3(currentGridSize + 1, currentGridSize),
+
+            new Vector3(currentGridSize, -1),
+            new Vector3(currentGridSize, 0),
+            new Vector3(currentGridSize + 1, 0),
+            new Vector3(currentGridSize + 1, -1)
+        };
+        
+        Vector2[] uv = new Vector2[16]
+        {
+            new Vector2(0,1),
+            new Vector2(1,1),
+            new Vector2(1,0),
+            new Vector2(0,0),
+
+            new Vector2(0,0),
+            new Vector2(0,1),
+            new Vector2(1,1),
+            new Vector2(1,0),
+
+            new Vector2(1,0),
+            new Vector2(0,0),
+            new Vector2(0,1),
+            new Vector2(1,1),
+
+            new Vector2(1,1),
+            new Vector2(1,0),
+            new Vector2(0,0),
+            new Vector2(0,1)
+        };
+
+        int triangleIndex = 0;
+        for(int i = 0; i < 4; i++)
+        {
+            triangles[triangleIndex++] = (i * 4) + 0;
+            triangles[triangleIndex++] = (i * 4) + 1;
+            triangles[triangleIndex++] = (i * 4) + 2;
+            triangles[triangleIndex++] = (i * 4) + 0;
+            triangles[triangleIndex++] = (i * 4) + 2;
+            triangles[triangleIndex++] = (i * 4) + 3;
+        }
+
+        groundCornerMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        groundCornerMesh.vertices = vertices;
+        groundCornerMesh.triangles = triangles;
+        groundCornerMesh.uv = uv;
+        groundCornerMesh.RecalculateNormals();
+
+        transform.Find("Ground Corner Tiles").GetComponent<MeshFilter>().mesh = groundCornerMesh;
+    }
+    private void DrawSea()
+    {
+        seaMesh = new Mesh();
+
+        float height = currentGridSize * 1.5f;
+        float width = (height / 9.0f) * 16.0f;
+        int yAddOn = Mathf.RoundToInt((height - currentGridSize) / 2);
+        int xAddOn = Mathf.RoundToInt((width - currentGridSize) / 2);
+
+        int noOfSquares = (2 * xAddOn + currentGridSize) * (2 * yAddOn + currentGridSize);
+        Vector3[] vertices = new Vector3[noOfSquares * 4];
+        Vector2[] uv = new Vector2[noOfSquares * 4];
+        int[] triangles = new int[noOfSquares * 6];
+
+        int vertexIndex = 0;
+        int triangleIndex = 0;
+
+        for (int x = -xAddOn; x < currentGridSize + xAddOn; x++)
+        {
+            for (int y = -yAddOn; y < currentGridSize + yAddOn; y++)
+            {
+                vertices[vertexIndex] = new Vector3(x, y, 0);
+                vertices[vertexIndex + 1] = new Vector3(x, y + 1, 0);
+                vertices[vertexIndex + 2] = new Vector3(x + 1, y + 1, 0);
+                vertices[vertexIndex + 3] = new Vector3(x + 1, y, 0);
+
+                uv[vertexIndex] = new Vector2(0, 0);
+                uv[vertexIndex + 1] = new Vector2(0, 1);
+                uv[vertexIndex + 2] = new Vector2(1, 1);
+                uv[vertexIndex + 3] = new Vector2(1, 0);
+
+                triangles[triangleIndex++] = vertexIndex;
+                triangles[triangleIndex++] = vertexIndex + 1;
+                triangles[triangleIndex++] = vertexIndex + 2;
+                triangles[triangleIndex++] = vertexIndex;
+                triangles[triangleIndex++] = vertexIndex + 2;
+                triangles[triangleIndex++] = vertexIndex + 3;
+
+                vertexIndex += 4;
+            }
+        }
+
+        seaMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+        seaMesh.vertices = vertices;
+        seaMesh.triangles = triangles;
+        seaMesh.uv = uv;
+        seaMesh.RecalculateNormals();
+
+        transform.Find("Sea Tiles").GetComponent<MeshFilter>().mesh = seaMesh;
+
     }
 
     public float GetArenaSize()
     {
-        return tileMapSize;
+        return gridMapSize;
     }
 }
