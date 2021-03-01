@@ -45,7 +45,7 @@ public class BristolRobotBehaviour : MonoBehaviour
 
         // Get object to state text manager script and set text;
         stateTextManager = stateText.GetComponent<StateTextManager>();
-        stateTextManager.SetStateString(currentState);
+        stateTextManager.SetStateString(currentState.GetStateString());
 
         // Rotate to random direction
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
@@ -63,7 +63,7 @@ public class BristolRobotBehaviour : MonoBehaviour
     public void TransitionToState(BristolAbstractState newState)
     {
         currentState = newState;
-        stateTextManager.SetStateString(currentState);
+        stateTextManager.SetStateString(currentState.GetStateString());
         currentState.resetTime();
     }
 }

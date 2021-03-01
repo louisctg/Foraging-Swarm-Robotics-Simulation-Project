@@ -30,7 +30,7 @@ public class Spawn_Manager : MonoBehaviour
 
                 if (rand <= probability)
                 {
-                    GameObject newForagingItem = Instantiate(foragingItemPrefab, new Vector3(x + 0.5f, y + 0.5f, 1), Quaternion.identity, foragingMaterials.transform);
+                    GameObject newForagingItem = Instantiate(foragingItemPrefab, new Vector3(x + 0.5f, y + 0.5f, 0), Quaternion.identity, foragingMaterials.transform);
                     newForagingItem.name = "Foraging Item (" + x + "," + y + ")";
                 }
             }

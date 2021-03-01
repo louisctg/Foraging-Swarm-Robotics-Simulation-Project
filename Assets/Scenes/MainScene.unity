@@ -559,39 +559,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45cf15416545b8469d3384a3f2b7354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &579296746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 579296746, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-  m_PrefabInstance: {fileID: 966832675}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &579296747
-  m_ObjectHideFlags: 0
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579296746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec0891bd1c0c2e4bbaceabe7c31f79a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &642998186
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  m_PrefabAsset: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
   - component: {fileID: 642998187}
   m_Layer: 0
   m_Name: Foraging Material
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_IsActive: 1
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &642998187
 Transform:
   m_ObjectHideFlags: 0
@@ -699,7 +682,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -725,13 +708,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 658165068, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -751,15 +730,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 493671143511631666, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -777,22 +756,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bristol Robot
       objectReference: {fileID: 0}
-    - target: {fileID: 5638978035657480177, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_fontSize
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5638978035657480177, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5638978035657480177, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9095646085594562091, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
-      propertyPath: stateText
-      value: 
-      objectReference: {fileID: 2100000, guid: 6e3a5a36e22b50b4cb2c80508b632b16, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6add3dda6f9f39e429cdfb87866a30f0, type: 3}
 --- !u!1 &1211443505
@@ -834,7 +797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211443505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 481905882}
@@ -876,7 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   probability: 0
   foragingMaterials: {fileID: 642998186}
-  foragingItemPrefab: {fileID: 241499320110485677, guid: a0a96e995a637094495dd62a7db239bc, type: 3}
+  foragingItemPrefab: {fileID: 1266706696769187827, guid: 9dd908c42376390419c57d6f0fd82d91, type: 3}
 --- !u!1 &1346179645
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1346179646
 Transform:
   m_ObjectHideFlags: 0
@@ -998,7 +961,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2120521574
 GameObject:
@@ -1064,5 +1027,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

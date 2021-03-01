@@ -22,8 +22,8 @@ public class StateTextManager : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
-    public void SetStateString(BristolAbstractState state)
+    public void SetStateString(string stateString)
     {
-        stateTMP.SetText(state.GetStateString());
+        stateTMP.SetText(stateString);
     }
 }

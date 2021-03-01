@@ -14,7 +14,7 @@ public class Arena_Manager : MonoBehaviour
     Mesh seaMesh;
 
     [SerializeField]
-    [Range(2,200)]
+    [Range(10,200)]
     private int gridMapSize = 200;
     private int currentGridSize;
 
@@ -125,6 +125,7 @@ public class Arena_Manager : MonoBehaviour
 
         transform.Find("Ground Tiles").GetComponent<MeshFilter>().mesh = groundMesh;
     }
+    
     private void DrawBorders()
     {
         groundBorderMesh = new Mesh();
@@ -234,6 +235,7 @@ public class Arena_Manager : MonoBehaviour
 
         transform.Find("Ground Border Tiles").GetComponent<MeshFilter>().mesh = groundBorderMesh;
     }
+    
     private void DrawCorners()
     {
         groundCornerMesh = new Mesh();
@@ -305,11 +307,12 @@ public class Arena_Manager : MonoBehaviour
 
         transform.Find("Ground Corner Tiles").GetComponent<MeshFilter>().mesh = groundCornerMesh;
     }
+  
     private void DrawSea()
     {
         seaMesh = new Mesh();
 
-        float height = currentGridSize * 1.5f;
+        float height = currentGridSize * 2.0f;
         float width = (height / 9.0f) * 16.0f;
         int yAddOn = Mathf.RoundToInt((height - currentGridSize) / 2);
         int xAddOn = Mathf.RoundToInt((width - currentGridSize) / 2);
