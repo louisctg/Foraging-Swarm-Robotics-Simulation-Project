@@ -4,7 +4,7 @@ public class BristolDepositState : BristolAbstractState
 {
     public BristolDepositState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot)
     {
-        stateString = "D";
+        this.stateString = "D";
     }
 
     public override void TimeoutChangeState()

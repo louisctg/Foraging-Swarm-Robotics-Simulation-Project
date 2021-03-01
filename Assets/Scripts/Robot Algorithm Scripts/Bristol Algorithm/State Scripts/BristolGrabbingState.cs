@@ -5,7 +5,7 @@ public class BristolGrabbingState : BristolAbstractState
 
     public BristolGrabbingState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot)
     {
-        stateString = "G";
+        this.stateString = "G";
     }
 
     public override void TimeoutChangeState()

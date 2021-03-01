@@ -5,7 +5,7 @@ public abstract class BristolAbstractState
     protected float timeout;
     protected float timeInState;
 
-    public string stateString;
+    public string stateString = "";
 
     public BristolRobotBehaviour robot;
 

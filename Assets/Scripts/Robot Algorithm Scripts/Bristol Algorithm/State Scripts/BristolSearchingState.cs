@@ -7,7 +7,7 @@ public class BristolSearchingState : BristolAbstractState
 
     public BristolSearchingState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot)
     {
-        stateString = "S";
+        this.stateString = "S";
     }
 
     override public void TimeoutChangeState()

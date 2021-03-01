@@ -22,38 +22,40 @@ public class BristolRobotBehaviour : MonoBehaviour
     public BristolAvoidanceSearchingState avoidanceSearchingState;
 
     BristolAbstractState currentState;
-    [SerializeField]
     private GameObject stateText;
     private StateTextManager stateTextManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        grabbingState = new BristolGrabbingState(20, this);
-        depositState = new BristolDepositState(20, this);
-        homingState = new BristolHomingState(20, this);
-        restingState = new BristolRestingState(20, this);
-        searchingState = new BristolSearchingState(20, this);
+        grabbingState = new BristolGrabbingState(5, this);
+        depositState = new BristolDepositState(5, this);
+        homingState = new BristolHomingState(5, this);
+        restingState = new BristolRestingState(5, this);
+        searchingState = new BristolSearchingState(5, this);
 
-        avoidanceGrabbingState = new BristolAvoidanceGrabbingState(20, this);
-        avoidanceDepositState = new BristolAvoidanceDepositState(20, this);
-        avoidanceHoningState = new BristolAvoidanceHoningState(20, this);
-        avoidanceSearchingState = new BristolAvoidanceSearchingState(20, this);
+        avoidanceGrabbingState = new BristolAvoidanceGrabbingState(5, this);
+        avoidanceDepositState = new BristolAvoidanceDepositState(5, this);
+        avoidanceHoningState = new BristolAvoidanceHoningState(5, this);
+        avoidanceSearchingState = new BristolAvoidanceSearchingState(5, this);
 
         // Robots always starts in a searching state
-        currentState = avoidanceHoningState;
+        currentState = searchingState;
 
         // Get object to state text manager script and set text;
-        stateTextManager = stateText.GetComponent<StateTextManager>();
-        stateTextManager.SetStateString(currentState);
+        this.stateText = transform.Find("State Text").gameObject;
 
+        this.stateTextManager = stateText.GetComponent<StateTextManager>();
+
+        stateTextManager.SetStateString(currentState.GetStateString());
+        
         // Rotate to random direction
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
     }
 
     void Update()
     {
-        //currentState.Update();
+        currentState.Update();
     }
 
     private void LateUpdate()
@@ -63,7 +65,7 @@ public class BristolRobotBehaviour : MonoBehaviour
     public void TransitionToState(BristolAbstractState newState)
     {
         currentState = newState;
-        stateTextManager.SetStateString(currentState);
+        stateTextManager.SetStateString(currentState.GetStateString());
         currentState.resetTime();
     }
 }

@@ -4,7 +4,7 @@ public class BristolAvoidanceHoningState : BristolAbstractAvoidanceState
 {
     public BristolAvoidanceHoningState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot)
     {
-        stateString = "A<sub>H</sub>";
+        this.stateString = "A<sub>H</sub>";
     }
 
     public override void TimeoutChangeState()

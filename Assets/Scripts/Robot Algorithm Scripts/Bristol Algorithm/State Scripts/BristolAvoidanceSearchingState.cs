@@ -4,7 +4,7 @@ public class BristolAvoidanceSearchingState : BristolAbstractAvoidanceState
 {
     public BristolAvoidanceSearchingState(float timeout, BristolRobotBehaviour robot) : base(timeout, robot)
     {
-        stateString = "A<sub>S</sub>";
+        this.stateString = "A<sub>S</sub>";
     }
 
 
