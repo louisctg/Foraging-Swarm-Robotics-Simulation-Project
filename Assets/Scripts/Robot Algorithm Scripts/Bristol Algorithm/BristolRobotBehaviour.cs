@@ -47,8 +47,6 @@ public class BristolRobotBehaviour : MonoBehaviour
 
         stateTextManager.SetStateString(currentState.GetStateString());
 
-        // Rotate to random direction
-        transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
     }
 
     void Update()

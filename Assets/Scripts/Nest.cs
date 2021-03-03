@@ -28,7 +28,8 @@ public class Nest : MonoBehaviour
 
         robots = arenaManager.robots;
 
-        angleOffset = 90.0f;
+        angleOffset = 45.0f;
+        currentAngle = 0.0f;
         spawnFrequency = 2.0f;
         maxRobots = 20;
 
@@ -57,7 +58,10 @@ public class Nest : MonoBehaviour
         if(numberRobotsSpawned < maxRobots)
         {
             int arenaSize = arenaManager.GetArenaSize();
-            Instantiate(robotPrefab, new Vector3(arenaSize / 2, arenaSize / 2), Quaternion.identity, robots.transform);     
+            Instantiate(robotPrefab, new Vector3(arenaSize / 2, arenaSize / 2), Quaternion.Euler(0,0,currentAngle), robots.transform);
+            currentAngle += angleOffset;
+            if (angleOffset >= 360)
+                angleOffset -= 360;
         }
     }
 }
