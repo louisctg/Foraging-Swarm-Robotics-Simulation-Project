@@ -22,6 +22,7 @@ public class BristolRobotBehaviour : MonoBehaviour
     public BristolAvoidanceSearchingState avoidanceSearchingState;
 
     BristolAbstractState currentState;
+    [SerializeField]
     private GameObject stateText;
     private StateTextManager stateTextManager;
 
@@ -42,13 +43,10 @@ public class BristolRobotBehaviour : MonoBehaviour
         // Robots always starts in a searching state
         currentState = searchingState;
 
-        // Get object to state text manager script and set text;
-        this.stateText = transform.Find("State Text").gameObject;
-
         this.stateTextManager = stateText.GetComponent<StateTextManager>();
 
         stateTextManager.SetStateString(currentState.GetStateString());
-        
+
         // Rotate to random direction
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
     }

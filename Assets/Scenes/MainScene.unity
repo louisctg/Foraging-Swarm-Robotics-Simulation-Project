@@ -770,7 +770,7 @@ MonoBehaviour:
   collisionObjects: {fileID: 1346179645}
   borderPrefab: {fileID: 1266706696769187827, guid: 76a738ce849529445913a843e0ff1804, type: 3}
   nestPrefab: {fileID: 7256635494557452983, guid: 5f0513c56f2a02744b19d80f4fe8e903, type: 3}
-  robots: {fileID: 0}
+  robots: {fileID: 1681801732}
 --- !u!114 &1211443509
 MonoBehaviour:
   m_ObjectHideFlags: 0

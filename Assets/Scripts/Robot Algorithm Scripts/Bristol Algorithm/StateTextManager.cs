@@ -5,13 +5,8 @@ using UnityEngine;
 
 public class StateTextManager : MonoBehaviour
 {
+    [SerializeField]
     private TextMeshPro stateTMP;
-
-    void Start()
-    {
-        stateTMP = this.GetComponent<TextMeshPro>();
-    }
-
 
     // Update is called once per frame
     void LateUpdate()
@@ -22,6 +17,7 @@ public class StateTextManager : MonoBehaviour
 
     public void SetStateString(string stateString)
     {
-        stateTMP.SetText(stateString);
+        if(stateTMP != null)
+            this.stateTMP.SetText(stateString);
     }
 }
