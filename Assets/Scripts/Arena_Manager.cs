@@ -28,18 +28,20 @@ public class Arena_Manager : MonoBehaviour
     private GameObject leftBorder;
     private GameObject rightBorder;
 
+    [SerializeField]
+    private GameObject nestPrefab;
+
+    public GameObject robots;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera.transform.position = new Vector3(gridMapSize / 2.0f, gridMapSize / 2.0f, -10);
 
-        groundBorderMesh = new Mesh();
-        groundCornerMesh = new Mesh();
+        currentGridSize = gridMapSize;
 
-        transform.Find("Ground Border Tiles").GetComponent<MeshFilter>().mesh = groundBorderMesh;
-        transform.Find("Ground Corner Tiles").GetComponent<MeshFilter>().mesh = groundCornerMesh;
-
+        Instantiate(nestPrefab, new Vector3(currentGridSize / 2, currentGridSize / 2), Quaternion.identity, transform);
+        robots = this.transform.Find("Robots").gameObject;
         DrawGrids();
     }
 
@@ -360,7 +362,7 @@ public class Arena_Manager : MonoBehaviour
 
     }
 
-    public float GetArenaSize()
+    public int GetArenaSize()
     {
         return gridMapSize;
     }
