@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateText: {fileID: 579296746}
+  stateTextManager: {fileID: 3135394855011632292}
 --- !u!212 &493671143511631669
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -483,6 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRadius: 3.17
   viewAngle: 33.96
+  visibleObjects: []
   fieldOfViewMeshFilter: {fileID: 518357514006480968}
   raysPerDegree: 0
 --- !u!58 &6726510086274169960

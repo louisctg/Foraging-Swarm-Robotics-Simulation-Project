@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Robot
   - Item
+  - Nest
+  - Border
   layers:
   - Default
   - TransparentFX

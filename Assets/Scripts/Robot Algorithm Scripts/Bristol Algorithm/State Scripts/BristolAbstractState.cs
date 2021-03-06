@@ -5,9 +5,7 @@ public abstract class BristolAbstractState
     protected float timeout;
     protected float timeInState;
 
-    public string stateString = "";
-
-    public BristolRobotBehaviour robot;
+    protected BristolRobotBehaviour robot;
 
     protected BristolAbstractState(float timeout, BristolRobotBehaviour robot)
     {
@@ -15,17 +13,13 @@ public abstract class BristolAbstractState
         this.robot = robot;
     }
 
-    public void resetTime()
-    {
-        timeInState = 0;
-    }
+    public abstract void EnterState(BristolRobotBehaviour robot);
 
-    public abstract void TimeoutChangeState();
+    public abstract void OnTriggerEnter2D(BristolRobotBehaviour robot, Collider2D collision);
 
-    public abstract void Update();
+    public abstract void Update(BristolRobotBehaviour robot);
 
-    public string GetStateString()
-    {
-        return this.stateString;
-    }
+    public abstract void TimeoutChangeState(BristolRobotBehaviour robot);
+
+    public void resetTime() { timeInState = 0; }
 }

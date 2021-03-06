@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class FieldOfView : MonoBehaviour
 {
+	private BristolRobotBehaviour robot;
+
 	[Range(0,1000)]
 	public float viewRadius;
 
@@ -12,6 +14,9 @@ public class FieldOfView : MonoBehaviour
 
 	[HideInInspector]
 	public HashSet<Transform> visibleObjects = new HashSet<Transform>();
+	private Transform nearestItem;
+	private bool otherRobotInView;
+
 
 	public MeshFilter fieldOfViewMeshFilter;
 	Mesh fieldOfViewMesh;
@@ -21,6 +26,7 @@ public class FieldOfView : MonoBehaviour
 
 	private void Start()
     {
+		robot = this.gameObject.GetComponent<BristolRobotBehaviour>();
 		// Create new mesh for rendering the field of view
 		fieldOfViewMesh = new Mesh();
 		fieldOfViewMeshFilter.mesh = fieldOfViewMesh;
@@ -36,7 +42,11 @@ public class FieldOfView : MonoBehaviour
 
     void FindVisibleObjects()
 	{
+		// Reset the variables
 		visibleObjects.Clear();
+		nearestItem = null;
+		otherRobotInView = false;
+
 		int steps = Mathf.RoundToInt(viewAngle / 2.0f);
 
 		float stepAngle = viewAngle / steps;
@@ -54,9 +64,27 @@ public class FieldOfView : MonoBehaviour
 			for(int hitNo = 0; hitNo < hits.Length; hitNo++)
             {
 				visibleObjects.Add(hits[hitNo].transform);
+
+				if (hits[hitNo].transform.tag == "Item")
+				{
+					// Check if this object is the nearest
+					if (nearestItem == null ||
+						Vector3.Distance(transform.position, hits[hitNo].transform.position)
+						< Vector3.Distance(transform.position, nearestItem.transform.position))
+					{
+						nearestItem = hits[hitNo].transform;
+					}
+				}
+				else if (hits[hitNo].transform.tag == "Robot")
+                {
+					otherRobotInView = true;
+                }
             }
 		}
 		Physics2D.queriesStartInColliders = true;
+
+		// Update the robot with the new visual information
+		this.robot.UpdateVisualInfo(visibleObjects, nearestItem, otherRobotInView);
 	}
 
 	IEnumerator FindObjectsWithDelay(float delay)
@@ -103,4 +131,5 @@ public class FieldOfView : MonoBehaviour
 	{
 		return Quaternion.AngleAxis(angle, axis) * zeroDirection;
 	}
+
 }
